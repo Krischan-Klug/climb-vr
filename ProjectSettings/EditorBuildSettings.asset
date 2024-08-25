@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Debug_KK.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: df18c87f4e7ecba48aa9e5d964464f2d,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 37a61defaadde0d4881ea5548f4015ae,
       type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 67962ae4e3bf0d742bd40289ba35a32b,
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: e32d1330ff90c5e44b089e5b4529582d,
       type: 2}
