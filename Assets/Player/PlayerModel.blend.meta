@@ -3,7 +3,22 @@ guid: cbd82cb545ccb7a45974d91b5d71873c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FaceMaterial
+    second: {fileID: 2100000, guid: 1d8f4a9d1dc680342ac0ff0786f82bb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Primary_Color
+    second: {fileID: 2100000, guid: b0272505374fc1c4c92aded2fed8dfef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Secondary_Color
+    second: {fileID: 2100000, guid: 15f685314b827db41b15f38a9b748fd6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -78,7 +93,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []
