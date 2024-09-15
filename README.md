@@ -2,7 +2,7 @@
 A thrilling VR experience where players must climb, jump, and parkour their way to the top using an innovative character controller!
 
 ## 🎮 **Overview**
-Welcome to **VR Parkour Adventure**, a heart-pounding, physics-based VR game where the goal is simple: ascend as high as you can! Using a unique character controller, inspired by games like _Only Up_, you’ll climb walls, leap across platforms, and navigate intricate parkour challenges, all in immersive virtual reality.
+Welcome to **Climb VR**, a heart-pounding, physics-based VR game where the goal is simple: ascend as high as you can! Using a unique character controller, inspired by games like _Only Up_, you’ll climb walls, leap across platforms, and navigate intricate parkour challenges, all in immersive virtual reality.
 
 ## ✨ **Features**
 - **Unique Character Controller**: Experience a one-of-a-kind movement system designed specifically for VR climbing and parkour.
