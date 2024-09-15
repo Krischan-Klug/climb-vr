@@ -45,9 +45,9 @@ namespace Photon.Voice.Unity
         protected int channels;
         protected int bufferSamples;
 
-        // WebAudio graph is optimized when initialized for spatialBlend = 0 and spatialBlend = 1. In these cases, spatialBlend is constant.
-        // Set AudioSource.spatialBlend to the value between 0 and 1 and recreate WebAudioAudioOut (e.g. call Speaker.RestartPlayback()) to be able adjust spatialBlend dynamically.
-        // Set AudioSource.spatialBlend to 0 or 1 and recreate WebAudioAudioOut to swith to an optimized graph.
+        // WebAudio graph is optimized when initialized with spatialBlend = 0 and spatialBlend = 1. In these cases, spatialBlend is constant.
+        // Set AudioSource.spatialBlend to the value between 0 and 1 and recreate WebAudioAudioOut (e.g. call Speaker.RestartPlayback()) to be able to adjust spatialBlend dynamically.
+        // Set AudioSource.spatialBlend to 0 or 1 and recreate WebAudioAudioOut to switch to the optimized graph.
         public WebAudioAudioOut(PlayDelayConfig playDelayConfig, double spatialBlend, ILogger logger, string logPrefix, bool debugInfo)
         : base(false, playDelayConfig, logger, "[PV] [Unity] WebAudioAudioOut" + (logPrefix == "" ? "" : " " + logPrefix), debugInfo)
         {

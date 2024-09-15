@@ -3,12 +3,6 @@ PUN 2 - Changelog
 www.photonengine.com  -  Join the community Discord Server: https://dashboard.photonengine.com/account/profile
 
 
-v2.46 (26. April 2024)
-Changed: PhotonStream serialization: Char values are cast to short before being sent (receivers will simply get a short but can cast accordingly).
-Added: PhotonStream.Serialize(ref byte value).
-Checked: Compatibility with Unity 2022.2.20 (soon to be Unity 6). All good.
-Updated: Library, Realtime and Chat API to 4.1.8.4. More details in the change logs.
-
 v2.45 (05. February 2024)
 Fixed: OpJoinRandomOrCreateRoom and OpJoinRandomRoom. The last version introduced an issue with random matchmaking, when using MaxPlayers as filter to find rooms. It caused clients never to find fitting rooms in those conditions.
 Updated: Library, Realtime and Chat API to 4.1.8.0. More details in the change logs.

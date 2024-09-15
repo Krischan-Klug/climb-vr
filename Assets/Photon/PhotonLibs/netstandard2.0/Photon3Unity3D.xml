@@ -2655,9 +2655,27 @@
         <member name="F:ExitGames.Client.Photon.TPeer.ALL_HEADER_BYTES">
             <summary>TCP header combined: 9 bytes</summary>
         </member>
+        <member name="F:ExitGames.Client.Photon.TPeer.lastPingActivity">
+            <summary>Timestamp of last ping activity (updated when sending to avoid sending again immediately).</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.TPeer.pingRequest">
+            <summary>Re-used binary message used in the TCP protocol (WSS uses a Ping Operation due to lack of framing).</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.TPeer.pingParamDict">
+            <summary>Re-used ping-Operation parameter-dict used in the WS/WSS protocol (TCP uses pingRequest).</summary>
+        </member>
         <member name="F:ExitGames.Client.Photon.TPeer.DoFraming">
             <summary>Defines if the (TCP) socket implementation needs to do "framing".</summary>
             <remarks>The WebSocket protocol (e.g.) includes framing, so when that is used, we set DoFraming to false.</remarks>
+        </member>
+        <member name="F:ExitGames.Client.Photon.TPeer.waitForInitResponse">
+            <summary>
+            Helper value to track if this TPeer sends an init request and has to wait for the response. Defaults to true.
+            </summary>
+            <remarks>
+            For WebSockets, the init request is usually skipped (unless there is an init-token)
+            Setting this false allows WS/WSS to send pings even before the init-response is back. this fixes a bug in some platforms which do not provide the init-response message (for unknown reasons)
+            </remarks>
         </member>
         <member name="M:ExitGames.Client.Photon.TPeer.DispatchIncomingCommands">
             <summary>
@@ -2678,7 +2696,7 @@
             <summary>enqueues serialized operations to be sent as tcp stream / package</summary>
         </member>
         <member name="M:ExitGames.Client.Photon.TPeer.SendPing">
-            <summary>Sends a ping and modifies this.lastPingResult to avoid another ping for a while.</summary>
+            <summary>Checks conditions. Immediately sends a ping as operation or "message". Updates this.lastPingActivity to avoid another ping for a while.</summary>
         </member>
         <member name="M:ExitGames.Client.Photon.TPeer.ReceiveIncomingCommands(System.Byte[],System.Int32)">
             <summary>reads incoming tcp-packages to create and queue incoming commands*</summary>

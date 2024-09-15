@@ -4,7 +4,20 @@ www.photonengine.com  -  Join our Discord Server: https://dashboard.photonengine
 
 
 
-Version 4.1.8.4 (26. April 2024 - rev7529)
+Version 4.1.8.8 (02. August 2024 - rev7638)
+    Changed: Handling of server paths and ports. If the AppSettings contain a path for the initial server to connect to, it is preserved. This is handled with the URI class in ToProtocolAddress().
+
+Version 4.1.8.7 (05. July 2024 - rev7622)
+    Changed: ConnectionHandler.StartFallbackSendAckThread() to use a Thread.Timer instead of a separate thread to reduce used resources. This avoids an issue with thread limits on console. WebGL exports use InvokeRepeating() instead (which is dependent on the main loop but WebGL is single threaded anyways).
+    Changed: Player.UpdateNickNameOnJoined() avoids sending the NickName if it is empty and not found in the props.
+
+Version 4.1.8.6 (25. May 2024 - rev7571)
+    Fixed: Non-Unity projects use the System.Hashtable which does not provide TryGetValue. TryGetValue use (recently added) has been replaced using ContainsKey.
+
+Version 4.1.8.5 (13. May 2024 - rev7556)
+    No notable changes (except in library).
+
+Version 4.1.8.4 (26. April 2024 - rev7530)
     No notable changes (except in library).
 
 Version 4.1.8.3 (24. April 2024 - rev7519)

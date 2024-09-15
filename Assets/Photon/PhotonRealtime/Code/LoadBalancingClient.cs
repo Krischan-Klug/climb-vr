@@ -853,20 +853,39 @@ namespace Photon.Realtime
                 protocolPort = this.ServerPortOverrides.NameServerPort;
             }
 
+
+            return this.ToProtocolAddress(this.NameServerHost, protocolPort, this.LoadBalancingPeer.TransportProtocol);
+        }
+
+
+        /// <summary>Build URI from address, use Scheme, Host and Path but set the port as defined by port-field or default port.</summary>
+        /// <exception cref="ArgumentException"></exception>
+        private string ToProtocolAddress(string address, int port, ConnectionProtocol protocol)
+        {
+            string protocolScheme = String.Empty;
+
             switch (this.LoadBalancingPeer.TransportProtocol)
             {
                 case ConnectionProtocol.Udp:
                 case ConnectionProtocol.Tcp:
-                    return string.Format("{0}:{1}", NameServerHost, protocolPort);
-                case ConnectionProtocol.WebSocket:
-                    return string.Format("ws://{0}:{1}", NameServerHost, protocolPort);
-                case ConnectionProtocol.WebSocketSecure:
-                    return string.Format("wss://{0}:{1}", NameServerHost, protocolPort);
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+                    return string.Format("{0}:{1}", address, port);
 
+                case ConnectionProtocol.WebSocket:
+                    protocolScheme = "ws://";
+                    break;
+                case ConnectionProtocol.WebSocketSecure:
+                    protocolScheme = "wss://";
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException($"Can not handle protocol: {protocol}.");
+            }
+
+            Uri uri = new Uri(protocolScheme + address);
+            string result = $"{uri.Scheme}://{uri.Host}:{port}{uri.AbsolutePath}";
+            //Debug.Log("ToProtocolAddress: "+result);
+            return result;
+        }
 
         #region Operations and Commands
 
@@ -968,6 +987,7 @@ namespace Photon.Realtime
 
                 this.ProxyServerAddress = appSettings.ProxyServer;
                 this.NameServerPortInAppSettings = appSettings.Port;
+
                 if (!this.LoadBalancingPeer.Connect(this.NameServerAddress, this.ProxyServerAddress, this.AppId, this.TokenForInit))
                 {
                     return false;
@@ -979,7 +999,8 @@ namespace Photon.Realtime
             {
                 this.Server = ServerConnection.MasterServer;
                 int portToUse = appSettings.IsDefaultPort ? 5055 : appSettings.Port;    // TODO: setup new (default) port config
-                this.MasterServerAddress = string.Format("{0}:{1}", appSettings.Server, portToUse);
+
+                this.MasterServerAddress = this.ToProtocolAddress(appSettings.Server, portToUse, this.LoadBalancingPeer.TransportProtocol);
 
                 if (!this.LoadBalancingPeer.Connect(this.MasterServerAddress, this.ProxyServerAddress, this.AppId, this.TokenForInit))
                 {
@@ -1938,7 +1959,7 @@ namespace Photon.Realtime
         /// If you want to set new player properties, do it once rejoined.
         ///
         /// Tickets: If the server requires use of Tickets or if the room was entered with a Ticket initially,
-        /// you will have to provide 
+        /// you will have to provide a ticket as argument.
         /// </remarks>
         public bool OpRejoinRoom(string roomName, object ticket = null)
         {
