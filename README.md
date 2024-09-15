@@ -1,4 +1,4 @@
-# 🧗‍♂️ **VR Parkour Adventure**  
+# 🧗‍♂️ **Climb VR**  
 A thrilling VR experience where players must climb, jump, and parkour their way to the top using an innovative character controller!
 
 ## 🎮 **Overview**
